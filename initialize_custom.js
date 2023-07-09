@@ -65,6 +65,7 @@ function(instance, properties, context) {
 	properties.modules.nestedlist = ("//meta-l.cdn.bubble.io/f1688855452272x924920363413134700/nested-list.js");
 	properties.modules.tooltip = ("//meta-l.cdn.bubble.io/f1688937413279x630826343885936800/tooltip.js");
 	properties.modules.inlinetemplate = ("//meta-l.cdn.bubble.io/f1688934729955x655946112458521100/inline-template.js");
+	properties.modules.mermaid = ("//meta-l.cdn.bubble.io/f1688945064271x953583844992815600/mermaid.js");
 
 
 

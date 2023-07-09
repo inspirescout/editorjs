@@ -394,17 +394,24 @@ class TextEditor{
 					config.tools.ColorPicker = TextColor;
 				});
 				loadPromises.push(promise);
-				console.log("tooltipcheck22dddd2");
 			}
-			console.log("tooltipcheck");
-			console.log(options.tooltip);
 
+			if (options.mermaid) {
+				let promise = loadModule(this.modules["mermaid"]).then(() => {
+					config.tools.mermaid = {
+						class: MermaidTool,
+						theme: 'neutral',
+					};
+				});
+				loadPromises.push(promise);
+			}
+			
 			
 	
 			if (options.strikethrough) {
-				let promise = loadModule(this.modules["tooltip"]).then(() => {
+				let promise = loadModule(this.modules["strikethrough"]).then(() => {
 					config.tools.strikethrough = {
-						class: Tooltip,
+						class: Strikethrough,
 						shortcut: 'CMD+SHIFT+X',
 					};
 				});
@@ -438,6 +445,9 @@ class TextEditor{
 				   console.log(container.id);
 				   console.log(container);
 				   loadPromises.push(promise);
+				   console.log("tooltipcheck");
+					console.log(options.tooltip);
+
 				console.log("tooltipyolooooooo");
 				
 			}
