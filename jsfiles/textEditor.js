@@ -418,12 +418,14 @@ class TextEditor{
 					  location: 'left',  
 					  highlightColor: '#FFEFD5',  
 					  underline: true,  
+					  inlineToolbar: true,
+					  shortcut: 'CMD+SHIFT+X',
 					  backgroundColor: '#154360',  
 					  textColor: '#FDFEFE',  
 					  holder: container,
 					};  
 				   });
-				   console.log("tooltipxxxxx");
+				   console.log("tooltiDADAD");
 				   console.log(container);
 				   loadPromises.push(promise);
 				console.log("tooltipyolooooooo");
