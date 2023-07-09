@@ -113,6 +113,8 @@ function(instance, properties, context) {
 	instance.data.editor = editor;
 	window.textEditor = editor;
 
+
+
 	const linesExtractors = {
 		"paragraph": (block) => {
 			let text = block?.data?.text;
