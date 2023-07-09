@@ -873,89 +873,138 @@ class Tooltip {
 	 */
   
 	customTooltip() {
-	  const tooltipTag = document.querySelector('.ct');
-	  const tooltipContent = document.querySelector('.ct__content');
-	  const observer = new MutationObserver((mutationList) => {
-		mutationList.forEach((mutation) => {
-		  if (mutation.type === 'childList') {
-			const content = tooltipContent.textContent;
-			if (document.querySelector(`[data-tooltip="${content}"]`)) {
-			  if (this.backgroundColor) this.setTooltipColor();
-			  if (this.textColor) this.setTooltipTextColor();
-			} else {
-			  tooltipTag.classList.remove('tooltip-color');
-			  tooltipContent.classList.remove('tooltip-text-color');
-			}
+		try {
+		  console.log('customTooltip CONSTRUCTOR');
+		  const tooltipTag = document.querySelector('.ct');
+		  const tooltipContent = document.querySelector('.ct__content');
+		  const observer = new MutationObserver((mutationList) => {
+			mutationList.forEach((mutation) => {
+			  if (mutation.type === 'childList') {
+				const content = tooltipContent.textContent;
+				if (document.querySelector(`[data-tooltip="${content}"]`)) {
+				  if (this.backgroundColor) this.setTooltipColor();
+				  if (this.textColor) this.setTooltipTextColor();
+				} else {
+				  tooltipTag.classList.remove('tooltip-color');
+				  tooltipContent.classList.remove('tooltip-text-color');
+				}
+			  }
+			});
+		  });
+	  
+		  observer.observe(tooltipContent, { childList: true });
+		} catch (error) {
+		  // Handle or log the error
+		  console.error('Error in customTooltip:', error);
+		}
+	  }
+	  
+	  tooltipSheet() {
+		try {
+		  console.log('tooltipSheet');
+		  const sheetsList = document.styleSheets;
+		  const sheets = Object.values(sheetsList);
+		  return sheets.filter((sheet) => sheet.ownerNode.id === 'editorjs-tooltip');
+		} catch (error) {
+		  // Handle or log the error
+		  console.error('Error in tooltipSheet:', error);
+		}
+	  }
+	  
+	  tooltipCssRules(selector) {
+		try {
+		  console.log('tooltipCssRules');
+		  const sheet = this.tooltipSheet()[0];
+		  if (sheet) {
+			const cssRules = Array.from(sheet.cssRules).filter((rule) => rule.selectorText === selector);
+			return cssRules;
 		  }
-		});
-	  });
-  
-	  observer.observe(tooltipContent, { childList: true });
-	}
-  
-	/**
-	 * Search the editorjs-tooltip style sheet
-	 * @returns the editorjs-tooltip style sheet
-	 */
-	tooltipSheet() {
-	  const sheetsList = document.styleSheets;
-	  const sheets = Object.values(sheetsList);
-	  return sheets.filter((sheet) => sheet.ownerNode.id === 'editorjs-tooltip');
-	}
-  
-	/**
-	 * Search for the cssRules of the selector passed
-	 * @param {string} selector is the CSS selector required
-	 * @returns the cssRules from the selector
-	 */
+		  return [];
+		} catch (error) {
+		  // Handle or log the error
+		  console.error('Error in tooltipCssRules:', error);
+		  return [];
+		}
+	  }
+	  
 	tooltipCssRule(selector) {
-	  const tooltipSheet = this.tooltipSheet();
-	  const cssRules = Object.values(tooltipSheet[0].cssRules);
-	  return cssRules.filter((cssRule) => cssRule.selectorText === selector);
-	}
+		try {
+		  const tooltipSheet = this.tooltipSheet();
+		  const cssRules = Object.values(tooltipSheet[0].cssRules);
+		  return cssRules.filter((cssRule) => cssRule.selectorText === selector);
+		} catch (error) {
+		  console.error(`Failed to get CSS rule for selector "${selector}":`, error);
+		  // Rethrow the error if you want it to be caught higher up
+		  throw error;
+		}
+	  }
   
 	/**
 	 * Set the tooltip color using the cssRules to overwrite the rules
 	 */
 	setTooltipColor() {
-	  const tooltipTag = document.querySelector('.ct');
-	  const beforeTooltip = this.tooltipCssRule('.tooltip-color::before');
-	  const afterTooltip = this.tooltipCssRule('.tooltip-color::after');
-  
-	  beforeTooltip[0].style.setProperty('background-color', this.backgroundColor);
-	  afterTooltip[0].style.setProperty('background-color', this.backgroundColor);
-	  tooltipTag.classList.add('tooltip-color');
-	}
+		try {
+		  const tooltipTag = document.querySelector('.ct');
+		  if (!tooltipTag) {
+			throw new Error("Tooltip tag not found");
+		  }
+	  
+		  const beforeTooltip = this.tooltipCssRule('.tooltip-color::before');
+		  const afterTooltip = this.tooltipCssRule('.tooltip-color::after');
+	  
+		  if (!beforeTooltip[0] || !afterTooltip[0]) {
+			throw new Error("Tooltip CSS rules not found");
+		  }
+	  
+		  beforeTooltip[0].style.setProperty('background-color', this.backgroundColor);
+		  afterTooltip[0].style.setProperty('background-color', this.backgroundColor);
+		  tooltipTag.classList.add('tooltip-color');
+		} catch (error) {
+		  console.error("Failed to set tooltip color:", error);
+		  // Rethrow the error if you want it to be caught higher up
+		  throw error;
+		}
+	  }
   
 	/**
 	 * Set the tooltip text color.
 	 */
 	setTooltipTextColor() {
-	  const textColor = this.tooltipCssRule('.tooltip-text-color');
-	  const tooltipContent = document.querySelector('.ct__content');
-  
-	  textColor[0].style.setProperty('color', this.textColor);
-	  tooltipContent.classList.add('tooltip-text-color');
-	}
-  
-	/**
-	 * Observe if some tooltip span is inserted and create the respective tooltip
-	 */
-	tooltipsObserver() {
-	  const holder = document.getElementById(this.editorId);
-	  const observer = new MutationObserver((mutationList) => {
-		mutationList.forEach((mutation) => {
-		  if (mutation.type === 'childList'
-		  && mutation.target.classList.contains('codex-editor__redactor')) {
-			const spanTooltips = document.querySelectorAll('.cdx-tooltip');
-  
-			spanTooltips.forEach((span) => this.createTooltip(span.dataset.tooltip, span));
-		  }
-		});
-	  });
-  
-	  observer.observe(holder, { childList: true, subtree: true });
-	}
+		try {
+		  const textColor = this.tooltipCssRule('.tooltip-text-color');
+		  const tooltipContent = document.querySelector('.ct__content');
+	  
+		  textColor[0].style.setProperty('color', this.textColor);
+		  tooltipContent.classList.add('tooltip-text-color');
+		} catch (error) {
+		  console.error('An error occurred in setTooltipTextColor:', error);
+		  // Handle or log the error accordingly
+		}
+	  }
+	  
+	  /**
+	   * Observe if some tooltip span is inserted and create the respective tooltip
+	   */
+	  tooltipsObserver() {
+		try {
+		  const holder = document.getElementById(this.editorId);
+		  const observer = new MutationObserver((mutationList) => {
+			mutationList.forEach((mutation) => {
+			  if (mutation.type === 'childList' && mutation.target.classList.contains('codex-editor__redactor')) {
+				const spanTooltips = document.querySelectorAll('.cdx-tooltip');
+	  
+				spanTooltips.forEach((span) => this.createTooltip(span.dataset.tooltip, span));
+			  }
+			});
+		  });
+	  
+		  observer.observe(holder, { childList: true, subtree: true });
+		} catch (error) {
+		  console.error('An error occurred in tooltipsObserver:', error);
+		  // Handle or log the error accordingly
+		}
+	  }
+	  
   
 	/**
 	 * Create the Tooltips with the Tooltip API
@@ -963,70 +1012,83 @@ class Tooltip {
 	 * @param {HTMLElement} spanTooltip is the selected text where the tooltip is created
 	 */
 	createTooltip(tooltipValue, spanTooltip = this.spanTooltip) {
-	  if (this.spanTooltip) {
-		this.spanTooltip.dataset.tooltip = tooltipValue;
-		this.setBackgroundColor(this.spanTooltip);
-		this.setUnderlineDecoration(this.spanTooltip);
-	  } else {
-		this.setBackgroundColor(spanTooltip);
-		this.setUnderlineDecoration(spanTooltip);
+		try {
+		  if (this.spanTooltip) {
+			this.spanTooltip.dataset.tooltip = tooltipValue;
+			this.setBackgroundColor(this.spanTooltip);
+			this.setUnderlineDecoration(this.spanTooltip);
+		  } else {
+			this.setBackgroundColor(spanTooltip);
+			this.setUnderlineDecoration(spanTooltip);
+		  }
+		  const { tooltipLocation } = this;
+		  this.api.tooltip.onHover(spanTooltip, tooltipValue, { placement: tooltipLocation });
+		} catch (error) {
+		  // Handle or log the error
+		  console.error('Error in createTooltip:', error);
+		}
 	  }
-	  const { tooltipLocation } = this;
-	  this.api.tooltip.onHover(spanTooltip, tooltipValue, { placement: tooltipLocation });
-	}
-  
-	/**
-	 * Set background-color and span custom class
-	 * @param {HTMLElement} spanTooltip is the tooltip element
-	 */
-  
-	setBackgroundColor(spanTooltip) {
-	  const tooltip = spanTooltip;
-	  if (tooltip.childElementCount > 0) {
-		tooltip.firstChild.classList.add(this.CSS.span);
-		tooltip.firstChild.style.background = this.highlightColor;
-	  } else {
-		tooltip.classList.add(this.CSS.span);
-		tooltip.style.background = this.highlightColor;
+	  
+	  setBackgroundColor(spanTooltip) {
+		try {
+		  const tooltip = spanTooltip;
+		  if (tooltip.childElementCount > 0) {
+			tooltip.firstChild.classList.add(this.CSS.span);
+			tooltip.firstChild.style.background = this.highlightColor;
+		  } else {
+			tooltip.classList.add(this.CSS.span);
+			tooltip.style.background = this.highlightColor;
+		  }
+		} catch (error) {
+		  // Handle or log the error
+		  console.error('Error in setBackgroundColor:', error);
+		}
 	  }
-	}
-	/**
-	 * Set underline class
-	 * @param {HTMLElement} spanTooltip is the tooltip element
-	 */
-  
-	setUnderlineDecoration(spanTooltip) {
-	  const tooltip = spanTooltip;
-	  if (this.underline) {
-		(tooltip.childElementCount > 0)
-		  ? tooltip.firstChild.classList.add(this.CSS.underline)
-		  : tooltip.classList.add(this.CSS.underline);
+	  
+	  setUnderlineDecoration(spanTooltip) {
+		try {
+		  const tooltip = spanTooltip;
+		  if (this.underline) {
+			(tooltip.childElementCount > 0)
+			  ? tooltip.firstChild.classList.add(this.CSS.underline)
+			  : tooltip.classList.add(this.CSS.underline);
+		  }
+		} catch (error) {
+		  // Handle or log the error
+		  console.error('Error in setUnderlineDecoration:', error);
+		}
 	  }
-	}
+	  
   
-	/**
-	 * render the button in the inline toolbar
-	 * @returns the button element created to the inline toolbar
-	 */
-  
-	render() {
-		let wrapper = this.api.ui.nodes.wrapper;
-
-		ElementUtils.waitTillElementExists(wrapper, ":scope > .ce-toolbar .ce-settings__button--delete").then((tooltipButton) => {
-			tooltipButton.innerHTML = this.config.buttonHTML;
-			tooltipButton.classList.add("fa");
-			tooltipButton.style.color = "black";
-			tooltipButton.style.fontSize = "20px";
-			tooltipButton.style.lineHeight = "32px";
-			tooltipButton.style.textAlignment = "center";
-		}).catch(()=>{});
-		const { inlineToolButton } = this.api.styles;
-		this.button.classList.add(inlineToolButton);
-		const button = document.createElement('DIV');
-		button.style.display = "none";
-		return button; 
-
-	}
+	  render() {
+		try {
+		  let wrapper = this.api.ui.nodes.wrapper;
+	  
+		  ElementUtils.waitTillElementExists(wrapper, ":scope > .ce-toolbar .ce-settings__button--delete")
+			.then((tooltipButton) => {
+			  tooltipButton.innerHTML = this.config.buttonHTML;
+			  tooltipButton.classList.add("fa");
+			  tooltipButton.style.color = "black";
+			  tooltipButton.style.fontSize = "20px";
+			  tooltipButton.style.lineHeight = "32px";
+			  tooltipButton.style.textAlignment = "center";
+			})
+			.catch((error) => {
+			  // Handle or log the error
+			  console.error('Error in waitTillElementExists:', error);
+			});
+	  
+		  const { inlineToolButton } = this.api.styles;
+		  this.button.classList.add(inlineToolButton);
+		  const button = document.createElement('DIV');
+		  button.style.display = "none";
+		  return button;
+		} catch (error) {
+		  // Handle or log the error
+		  console.error('Error in render:', error);
+		}
+	  }
+	  
 
 	static get isTune() {
 		return true;
