@@ -414,15 +414,23 @@ class TextEditor{
 			if (options.tooltip) {
 				let promise = loadModule(this.modules["tooltip"]).then(() => {  
 					config.tools.tooltip = {  
-					  class: Tooltip,  
-					  location: 'left',  
-					  highlightColor: '#FFEFD5',  
-					  underline: true,  
-					  inlineToolbar: true,
-					  shortcut: 'CMD+SHIFT+X',
-					  backgroundColor: '#154360',  
-					  textColor: '#FDFEFE',  
-					  holder: container,
+					  class: Tooltip,
+					  config: {
+						buttonHTML: `
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="14" viewBox="0 -5 21 30">
+						<path fill="currentColor" stroke-width="0" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M4,4V16H8.83L12,19.17L15.17,16H20V4H4M6,7H18V9H6V7M6,11H16V13H6V11Z" />
+					  </svg>
+						`,
+					  html: "<b>template</b>⭐",		
+					  }			  
+					//   location: 'left',  
+					//   highlightColor: '#FFEFD5',  
+					//   underline: true,  
+					//   inlineToolbar: true,
+					//   shortcut: 'CMD+SHIFT+X',
+					//   backgroundColor: '#154360',  
+					//   textColor: '#FDFEFE',  
+					//   holder: container,
 					};  
 				   });
 				   console.log("tooltiDADAD");
