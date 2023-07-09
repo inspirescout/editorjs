@@ -432,7 +432,9 @@ class TextEditor{
 					//   textColor: '#FDFEFE',  
 					//   holder: container,
 					};  
-				   });
+				   }).catch((error) => {
+					console.error('Error loading tooltip module:', error);
+				});
 				   console.log("tooltiDADAD");
 				   console.log(container);
 				   loadPromises.push(promise);
