@@ -786,7 +786,7 @@ class ChangeToolsDeleteButtonToThrashBin {
 	}
 }
 
-export default class Tooltip {
+class Tooltip {
 	static get isInline() {
 	  return true;
 	}
