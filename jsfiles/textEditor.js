@@ -436,13 +436,15 @@ class TextEditor{
 				let promise = loadModule(this.modules["inlinetemplate"]).then(() => {  
 					config.tools.inlinetemplate = {  
 					  class: EditorJSInlineTemplate.TemplateInlineTool,  
-					  buttonHTML: `
+					  config: {
+						buttonHTML: `
 							<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
 							<path d="M336 64h32a48 48 0 0148 48v320a48 48 0 01-48 48H144a48 48 0 01-48-48V112a48 48 0 0148-48h32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
 							<rect x="176" y="32" width="160" height="64" rx="26.13" ry="26.13" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
 							</svg>
 						`,
-					  html: "<b>template</b>⭐",					  
+					  html: "<b>template</b>⭐",		
+					  }					  				  
 					};  
 				   });
 				   console.log("EditorJSInlineTemplate.TemplateInlineTool INITTTT");
@@ -783,6 +785,52 @@ class ChangeToolsDeleteButtonToThrashBin {
 		return true;
 	}
 }
+
+
+
+class TemplateInlineTool {
+	constructor({ api, config }) {
+		this.api = api;
+		this.config = config || {
+			buttonHTML: `
+				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+				  <path d="M336 64h32a48 48 0 0148 48v320a48 48 0 01-48 48H144a48 48 0 01-48-48V112a48 48 0 0148-48h32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
+				  <rect x="176" y="32" width="160" height="64" rx="26.13" ry="26.13" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
+				</svg>
+			`,
+			html: "<b>template</b>⭐",
+		};
+	}
+
+	render() {
+		let wrapper = this.api.ui.nodes.wrapper;
+
+		ElementUtils.waitTillElementExists(wrapper, ":scope > .ce-toolbar .ce-settings__button--delete").then((templateButton) => {
+			templateButton.innerHTML = this.config.buttonHTML;
+			templateButton.classList.add("fa");
+			templateButton.style.color = "black";
+			templateButton.style.fontSize = "20px";
+			templateButton.style.lineHeight = "32px";
+			templateButton.style.textAlignment = "center";
+		}).catch(()=>{});
+
+		const button = document.createElement('DIV');
+		button.style.display = "none";
+		return button; 
+	}
+
+	static get isTune() {
+		return true;
+	}
+}
+
+
+
+
+
+
+
+
 
 class AIBlock{
 	constructor({ data, api, config, readOnly, block }) {
