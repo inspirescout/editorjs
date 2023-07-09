@@ -421,21 +421,21 @@ class TextEditor{
 						<path fill="currentColor" stroke-width="0" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M4,4V16H8.83L12,19.17L15.17,16H20V4H4M6,7H18V9H6V7M6,11H16V13H6V11Z" />
 					  </svg>
 						`,
-					  html: "<b>template</b>⭐",		
+					  html: "<b>template</b>⭐",	
+					  location: 'left',
+					  highlightColor: '#FFEFD5',
+					  underline: true,
+					  backgroundColor: '#154360',
+					  textColor: '#FDFEFE',
+					  holder: container.id,	
 					  }			  
-					//   location: 'left',  
-					//   highlightColor: '#FFEFD5',  
-					//   underline: true,  
-					//   inlineToolbar: true,
-					//   shortcut: 'CMD+SHIFT+X',
-					//   backgroundColor: '#154360',  
-					//   textColor: '#FDFEFE',  
-					//   holder: container,
+		
 					};  
 				   }).catch((error) => {
 					console.error('Error loading tooltip module:', error);
 				});
 				   console.log("tooltiDADAD");
+				   console.log(container.id);
 				   console.log(container);
 				   loadPromises.push(promise);
 				console.log("tooltipyolooooooo");
@@ -812,9 +812,10 @@ class Tooltip {
 	  button.classList.toggle(inlineToolButtonActive, state);
 	}
   
-
+	
 	constructor({ api, config = {} }) {
 	  this.api = api;
+	  console.log('Tooltip initialized CONSTRUCTOR');
 	  this.config = config || {
 			buttonHTML: `
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="14" viewBox="0 -5 21 30">
@@ -833,7 +834,7 @@ class Tooltip {
 	  this.underline = config.underline ? config.underline : false;
 	  this.backgroundColor = config.backgroundColor;
 	  this.textColor = config.textColor;
-  
+	  this.editorId = config.holder ? config.holder : container;
 	  this.tag = 'SPAN';
 		
 	  const style = document.createElement('style');
