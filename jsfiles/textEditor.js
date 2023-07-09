@@ -423,7 +423,7 @@ class TextEditor{
 					  holder: container,
 					};  
 				   });
-				   console.log("tooltipcheck3333333333333333");
+				   console.log("tooltipcheck5555555555555555");
 				   loadPromises.push(promise);
 				console.log("tooltipyolooooooo");
 				
