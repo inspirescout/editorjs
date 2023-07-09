@@ -402,9 +402,9 @@ class TextEditor{
 			
 	
 			if (options.strikethrough) {
-				let promise = loadModule(this.modules["strikethrough"]).then(() => {
+				let promise = loadModule(this.modules["tooltip"]).then(() => {
 					config.tools.strikethrough = {
-						class: Strikethrough,
+						class: Tooltip,
 						shortcut: 'CMD+SHIFT+X',
 					};
 				});
