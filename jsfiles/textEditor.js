@@ -396,6 +396,19 @@ class TextEditor{
 				loadPromises.push(promise);
 			}
 
+			if (options.textColor) {
+				let promise = loadModule(this.modules["textColorPlugin"]).then(() => {
+					config.tools.ColorPlugin = ColorPlugin;
+					config.tools.mermaid = {
+						colorCollections: ['#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
+						defaultColor: '#FF1300',
+						type: 'text', 
+						customPicker: true // add a button to allow selecting any colour  
+					 };
+				});
+				loadPromises.push(promise);
+			}
+
 			if (options.mermaid) {
 				let promise = loadModule(this.modules["mermaid"]).then(() => {
 					config.tools.mermaid = {

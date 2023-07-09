@@ -56,14 +56,15 @@ function(instance, properties, context) {
 	properties.modules.strikethrough = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1669117621837x572854774943550200/strikethrough.js");
 	properties.modules.table = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171684286x466892193292434100/table.js");
 	properties.modules.textAlignment = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1669117628665x359767664509752500/text-alignment-blocktune.js");
-	properties.modules.textColor = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1669117634971x380021326229439400/text-color.js");
+	properties.modules.textColor = ("//meta-l.cdn.bubble.io/f1688946229364x455182656637912450/text-color.js");
+	properties.modules.textColorPlugin = ("//meta-l.cdn.bubble.io/f1688946260078x631306968773162800/textcolorplugin.js");
 	properties.modules.textVariantTune = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668188199335x259038918325400480/text-variant-tune.js");
 	properties.modules.toggleBlock = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668598444774x903022427184868900/toggle-block.js");
 	properties.modules.underline = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1669117640265x432334274924913500/underline.js");
 	properties.modules.undo = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668598454100x531247675840307300/undo.js");
 	properties.modules.warning = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171697986x225559463325168060/warning.js");
 	properties.modules.nestedlist = ("//meta-l.cdn.bubble.io/f1688855452272x924920363413134700/nested-list.js");
-	properties.modules.tooltip = ("//meta-l.cdn.bubble.io/f1688937413279x630826343885936800/tooltip.js");
+	properties.modules.tooltip = ("//meta-l.cdn.bubble.io/f1688946291593x909529075119595000/tooltip.js");
 	properties.modules.inlinetemplate = ("//meta-l.cdn.bubble.io/f1688934729955x655946112458521100/inline-template.js");
 	properties.modules.mermaid = ("//meta-l.cdn.bubble.io/f1688945064271x953583844992815600/mermaid.js");
 
