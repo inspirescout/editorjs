@@ -1099,115 +1099,132 @@ class Tooltip {
 	
   
 	surround(range) {
-	  if (this.state) {
-		this.unwrap(range);
-		return;
-	  }
-  
-	  this.wrap(range);
-	}
-  
-	/**
-	 * wrap creates the span element for the selected text
-	 * @param {object} range is an object with info about the selected text
-	 */
-  
-	wrap(range) {
-	  const selectedText = range.extractContents();
-	  this.spanTooltip = document.createElement(this.tag);
-  
-	  this.spanTooltip.classList.add(this.CSS.tooltip);
-	  this.spanTooltip.appendChild(selectedText);
-	  range.insertNode(this.spanTooltip);
-  
-	  this.api.selection.expandToTag(this.spanTooltip);
-	}
-  
-	/**
-	 * unwrap delete the span if the tool is disabled
-	 * @param {object} range is an object with info about the selected text
-	 */
-	unwrap(range) {
-	  this.spanTooltip = this.api.selection.findParentTag(this.tag, this.CSS.tooltip);
-	  const text = range.extractContents();
-  
-	  this.spanTooltip.remove();
-  
-	  range.insertNode(text);
-	}
-  
-	/**
-	 * Checkstate is called when the user select any text
-	 * check the state of the tool in the selected text
-	 */
-	checkState() {
-	  this.spanTooltip = this.api.selection.findParentTag(this.tag);
-	  this.state = !!this.spanTooltip;
-  
-	  if (this.state) this.showActions();
-	  else this.hideActions();
-	}
-  
-	/**
-	 * render actions in the Toolbar
-	 * @returns the input in the Toolbar to insert the tooltip
-	 */
-	renderActions() {
-	  this.spanTooltip = this.api.selection.findParentTag(this.tag);
-	  this.tooltipInput = document.createElement('input');
-	  this.tooltipInput.placeholder = 'Add a tooltip';
-	  this.tooltipInput.classList.add(this.api.styles.input);
-	  this.tooltipInput.classList.add(this.CSS.input);
-	  if (this.spanTooltip) {
-		const tooltipStored = this.spanTooltip.dataset.tooltip;
-		this.tooltipInput.value = tooltipStored;
-	  }
-	  this.tooltipInput.hidden = true;
-  
-	  return this.tooltipInput;
-	}
-  
-	/**
-	 * Show the input and create the tooltip when the user presses Enter
-	 */
-	showActions() {
-	  this.tooltipInput.hidden = false;
-	  this.api.listeners.on(this.tooltipInput, 'keydown', (e) => {
-		if (e.key === 'Enter') {
-		  const tooltipValue = this.tooltipInput.value;
-		  this.createTooltip(tooltipValue);
-		  this.closeToolbar();
-		}
-	  }, false);
-	}
-  
-	/**
-	 * Hide the input if the user do not have tooltip in the selected text
-	 */
-	hideActions() {
-	  this.tooltipInput.hidden = true;
-	}
-  
-	/**
-	 * close the toolbar when the user presses Enter
-	 */
-	closeToolbar() {
-	  const toolbar = document.querySelector('.ce-inline-toolbar--showed');
-	  toolbar.classList.remove('ce-inline-toolbar--showed');
-	}
-  
-	/**
-	 * satanize the data output
-	*/
-	static get sanitize() {
-	  return {
-		span: (e) => {
-		  e.classList.remove('tooltip-tool__span', 'tooltip-tool__underline');
-		  return { class: true, 'data-tooltip': true };
-		},
-	  };
-	}
+  try {
+    if (this.state) {
+      this.unwrap(range);
+      return;
+    }
+
+    this.wrap(range);
+  } catch (error) {
+    console.error('Error in surround:', error);
   }
+}
+
+wrap(range) {
+  try {
+    const selectedText = range.extractContents();
+    this.spanTooltip = document.createElement(this.tag);
+
+    this.spanTooltip.classList.add(this.CSS.tooltip);
+    this.spanTooltip.appendChild(selectedText);
+    range.insertNode(this.spanTooltip);
+
+    this.api.selection.expandToTag(this.spanTooltip);
+  } catch (error) {
+    console.error('Error in wrap:', error);
+  }
+}
+
+unwrap(range) {
+  try {
+    this.spanTooltip = this.api.selection.findParentTag(this.tag, this.CSS.tooltip);
+    const text = range.extractContents();
+
+    if (this.spanTooltip) {
+      this.spanTooltip.remove();
+      range.insertNode(text);
+    }
+  } catch (error) {
+    console.error('Error in unwrap:', error);
+  }
+}
+
+checkState() {
+  try {
+    this.spanTooltip = this.api.selection.findParentTag(this.tag);
+    this.state = !!this.spanTooltip;
+
+    if (this.state) {
+      this.showActions();
+    } else {
+      this.hideActions();
+    }
+  } catch (error) {
+    console.error('Error in checkState:', error);
+  }
+}
+
+renderActions() {
+  try {
+    this.spanTooltip = this.api.selection.findParentTag(this.tag);
+    this.tooltipInput = document.createElement('input');
+    this.tooltipInput.placeholder = 'Add a tooltip';
+    this.tooltipInput.classList.add(this.api.styles.input);
+    this.tooltipInput.classList.add(this.CSS.input);
+
+    if (this.spanTooltip) {
+      const tooltipStored = this.spanTooltip.dataset.tooltip;
+      this.tooltipInput.value = tooltipStored;
+    }
+
+    this.tooltipInput.hidden = true;
+
+    return this.tooltipInput;
+  } catch (error) {
+    console.error('Error in renderActions:', error);
+    return null; // Handle the error appropriately based on your use case
+  }
+}
+
+showActions() {
+  try {
+    this.tooltipInput.hidden = false;
+    this.api.listeners.on(this.tooltipInput, 'keydown', (e) => {
+      if (e.key === 'Enter') {
+        const tooltipValue = this.tooltipInput.value;
+        this.createTooltip(tooltipValue);
+        this.closeToolbar();
+      }
+    }, false);
+  } catch (error) {
+    console.error('Error in showActions:', error);
+  }
+}
+
+hideActions() {
+  try {
+    this.tooltipInput.hidden = true;
+  } catch (error) {
+    console.error('Error in hideActions:', error);
+  }
+}
+
+closeToolbar() {
+  try {
+    const toolbar = document.querySelector('.ce-inline-toolbar--showed');
+    if (toolbar) {
+      toolbar.classList.remove('ce-inline-toolbar--showed');
+    }
+  } catch (error) {
+    console.error('Error in closeToolbar:', error);
+  }
+}
+
+static get sanitize() {
+  try {
+    return {
+      span: (e) => {
+        e.classList.remove('tooltip-tool__span', 'tooltip-tool__underline');
+        return { class: true, 'data-tooltip': true };
+      },
+    };
+  } catch (error) {
+    console.error('Error in sanitize:', error);
+    return null; // Handle the error appropriately based on your use case
+  }
+}
+}
 
 class TemplateInlineTool {
 	constructor({ api, config }) {
