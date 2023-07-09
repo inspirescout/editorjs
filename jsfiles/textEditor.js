@@ -802,11 +802,18 @@ class Tooltip {
 	  button.classList.toggle(inlineToolButtonActive, state);
 	}
   
-	/**
-	 * @param {object} api Editor.js api
-	 */
+
 	constructor({ api, config = {} }) {
 	  this.api = api;
+	  this.config = config || {
+			buttonHTML: `
+				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+				  <path d="M336 64h32a48 48 0 0148 48v320a48 48 0 01-48 48H144a48 48 0 01-48-48V112a48 48 0 0148-48h32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
+				  <rect x="176" y="32" width="160" height="64" rx="26.13" ry="26.13" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
+				</svg>
+			`,
+			html: "<b>template</b>⭐",
+		};
 	  this.button = null;
 	  this._state = false;
 	  this.spanTooltip = null;
@@ -974,24 +981,29 @@ class Tooltip {
 	 */
   
 	render() {
-	  this.button = document.createElement('button');
-	  this.button.type = 'button';
-	  this.button.innerHTML = `
-	  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="14" viewBox="0 -5 21 30">
-		<path fill="currentColor" stroke-width="0" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M4,4V16H8.83L12,19.17L15.17,16H20V4H4M6,7H18V9H6V7M6,11H16V13H6V11Z" />
-	  </svg>
-	`;
-	  const { inlineToolButton } = this.api.styles;
-	  this.button.classList.add(inlineToolButton);
-  
-	  return this.button;
+		let wrapper = this.api.ui.nodes.wrapper;
+
+		ElementUtils.waitTillElementExists(wrapper, ":scope > .ce-toolbar .ce-settings__button--delete").then((tooltipButton) => {
+			tooltipButton.innerHTML = this.config.buttonHTML;
+			tooltipButton.classList.add("fa");
+			tooltipButton.style.color = "black";
+			tooltipButton.style.fontSize = "20px";
+			tooltipButton.style.lineHeight = "32px";
+			tooltipButton.style.textAlignment = "center";
+		}).catch(()=>{});
+
+		const button = document.createElement('DIV');
+		button.style.display = "none";
+		return button; 
+
 	}
-	/**
-	 * The method is called when the button rendered in render() is clicked
-	 * create a span to enclose the selected text.
-	 * @param {object} range is an object with info about the selected text
-	 * @returns
-	 */
+
+	static get isTune() {
+		return true;
+	}
+
+
+	
   
 	surround(range) {
 	  if (this.state) {
