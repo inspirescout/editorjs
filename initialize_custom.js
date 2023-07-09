@@ -64,7 +64,7 @@ function(instance, properties, context) {
 	properties.modules.warning = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171697986x225559463325168060/warning.js");
 	properties.modules.nestedlist = ("//meta-l.cdn.bubble.io/f1688855452272x924920363413134700/nested-list.js");
 	properties.modules.tooltip = ("//meta-l.cdn.bubble.io/f1688857215672x577399729363878800/tooltip.js");
-	properties.modules.inlinetemplate = ("//meta-l.cdn.bubble.io/f1688934729955x655946112458521100/inline-template.jss");
+	properties.modules.inlinetemplate = ("//meta-l.cdn.bubble.io/f1688934729955x655946112458521100/inline-template.js");
 
 
 
