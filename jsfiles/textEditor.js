@@ -394,7 +394,7 @@ class TextEditor{
 					config.tools.ColorPicker = TextColor;
 				});
 				loadPromises.push(promise);
-				console.log("tooltipcheck222");
+				console.log("tooltipcheck22dddd2");
 			}
 			console.log("tooltipcheck");
 			console.log(options.tooltip);
