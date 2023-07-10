@@ -437,6 +437,20 @@ class TextEditor{
 				loadPromises.push(promise);
 			}
 
+
+			if (options.anchor) {
+				let promise = loadModule(this.modules["anchor"]).then(() => {
+					config.tools.anchorTune = {
+						class: AnchorTune,
+						tunes: [],
+						
+					};
+	
+					addTunes(config.tools.table.tunes);
+				});
+				loadPromises.push(promise);
+			}
+
 			if (options.tooltip) {
 				let promise = loadModule(this.modules["tooltip"]).then(() => {  
 					config.tools.Tooltip = {  

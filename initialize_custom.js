@@ -67,6 +67,7 @@ function(instance, properties, context) {
 	properties.modules.tooltip = ("//meta-l.cdn.bubble.io/f1688946291593x909529075119595000/tooltip.js");
 	properties.modules.inlinetemplate = ("//meta-l.cdn.bubble.io/f1688934729955x655946112458521100/inline-template.js");
 	properties.modules.mermaid = ("//meta-l.cdn.bubble.io/f1688945064271x953583844992815600/mermaid.js");
+	properties.modules.anchor = ("//meta-l.cdn.bubble.io/f1688950776164x405676432329828100/anchor.js");
 
 
 
