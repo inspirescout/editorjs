@@ -51,6 +51,9 @@ class TextEditor{
 				if (options.textVariantTune) {
 					tunes.push("textVariant");
 				}
+				if (options.anchor) {
+					tunes.push("anchorTune");
+				}
 	
 				if (options.textAlignment) {
 					tunes.push("alignmentTune");
