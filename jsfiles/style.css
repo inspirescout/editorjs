@@ -1,6 +1,21 @@
 .text-editor-js {
   overflow: visible !important;
 }
+
+.cdx-block {
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+}
+
+.cdx-quote {
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+}
+
 .text-editor-js .codex-editor__redactor {
   overflow-y: auto !important;
   overflow-x: hidden !important;

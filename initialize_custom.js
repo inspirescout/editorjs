@@ -3,7 +3,7 @@ function(instance, properties, context) {
 
 	let editor = instance.data.editor;
 	if (editor instanceof TextEditor) {
-		console.error("Tthe plugin is already initialized!");
+		console.error("The plugin is already initialized!");
 		return;
 	}
 	
@@ -36,7 +36,7 @@ function(instance, properties, context) {
 
 
 	properties.modules = {};
-	properties.modules.alert = ("//cdn.jsdelivr.net/gh/inspirescout/editorjs@3632069dad9cfb1c416a799f2d4c2ecd2de4d030/jsfiles/alert.js");
+	properties.modules.alert = ("//cdn.jsdelivr.net/gh/inspirescout/editorjs@7858af04baead77f2b3251b254109ec93366d3ff/jsfiles/alert.js");
 	properties.modules.attaches = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668597923465x621206336847559600/attaches.js");
 	properties.modules.button = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668597929244x328993324906738500/button.js");
 	properties.modules.checklist = ("//meta-l.cdn.bubble.io/f1688855009318x850344855991391100/checklist.js");
@@ -51,7 +51,7 @@ function(instance, properties, context) {
 	properties.modules.inlineCode = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171659106x774391810890868700/inline-code.js");
 	properties.modules.list = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171665354x752949127292524800/list.js");
 	properties.modules.marker = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1669130443158x931657112708441000/marker.js");
-	properties.modules.quote = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171671453x483698339838919900/quote.js");
+	properties.modules.quote = ("//cdn.jsdelivr.net/gh/inspirescout/editorjs@7858af04baead77f2b3251b254109ec93366d3ff/jsfiles/quote.js");
 	properties.modules.rawHTML = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171677220x459975258394372800/rawHTML.js");
 	properties.modules.strikethrough = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1669117621837x572854774943550200/strikethrough.js");
 	properties.modules.table = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668171684286x466892193292434100/table.js");
