@@ -451,7 +451,7 @@ class TextEditor{
 						
 					};
 	
-					addTunes(config.tools.table.tunes);
+					addTunes(config.tools.anchor.tunes);
 				});
 				loadPromises.push(promise);
 			}
@@ -620,6 +620,11 @@ class TextEditor{
 		this.insertImageToNextBlock(imageURL);
 	}
 	
+	setReadOnly(readonly){
+		this.waitForInitialization.then(()=>{
+			this.config.readOnly = readonly;
+		});
+	}
 
 	load(data){
 		if (!this.initialized) {
