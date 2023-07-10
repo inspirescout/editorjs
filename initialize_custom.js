@@ -71,7 +71,7 @@ function(instance, properties, context) {
 
 
 
-	instance.canvas[0].id = `text-editor-${instance.canvas[0].classList[1]}`;
+	instance.canvas[0].id = `editorId`;
 	editor = new TextEditor(instance.canvas[0], uploader, properties);
 
 	editor.on("ai", (input)=>{

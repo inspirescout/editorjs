@@ -469,7 +469,7 @@ class TextEditor{
 							textColor: '#FDFEFE',
 							shortcut: 'CMD+SHIFT+F',
 							// tunes: [],
-							holder: container.id,
+							holder: 'editorId',
 						};
 						console.log(container.id);
 						console.log("LOADED TOOLTIP");
