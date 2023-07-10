@@ -456,7 +456,7 @@ class TextEditor{
 
 			if (options.tooltip) {
 				let promise = loadModule(this.modules["tooltip"]).then(() => {  
-					config.tools.Tooltip = {
+					config.tools.tooltip = {
 						class: Tooltip,
 						location: 'left',
 						inlineToolbar: true,
