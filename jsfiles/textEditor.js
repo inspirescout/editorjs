@@ -638,16 +638,9 @@ class TextEditor{
 
 	
 
-	setReadOnly(readonly){
-		console.log("read");
-		console.log(readonly);
-		this.readOnly.toggle(readonly);
-		console.log(this);
-	}
 
-	setReadOnlyy(readonly) {
-		this.editor.readOnly.toggle(readonly);
-		
+	setReadOnly(readonly) {
+		this.editor.readOnly.toggle(readonly);		
 		console.log(this.editor);
 		
 	  }
