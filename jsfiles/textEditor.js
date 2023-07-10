@@ -484,6 +484,7 @@ class TextEditor{
 				console.log(container.id);
 				console.log(container);
 				loadPromises.push(promise);
+				addTunes(config.tools.tooltip.tunes);
 			}
 			
 
