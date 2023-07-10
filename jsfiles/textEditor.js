@@ -644,7 +644,7 @@ class TextEditor{
 				readOnly: true,				
 				holder: container,			
 				
-				...options,
+				
 			};
 
 	Promise.allSettled(loadPromises).then(() => {
@@ -655,19 +655,39 @@ class TextEditor{
 });
 
 }
+
+	setReadOnlyggy(readonly) {
+		editor.readOnly.toggle(true);
+	}
+
+
+
+	setReadOnlggy(readonly){
 	
+	this.input.contentEditable = !readOnly;
+	editor.readOnly.toggle(true);
+	
+	
+	}
+	static get readOnly() {
+		return true;
+	}
 
 	setReadOnly(readonly){
 		console.log("read");
 		console.log(readonly);
 		this.readOnly = readonly;
 		this.config.readOnly = readonly;
+		this.editor.isReady.then(resolve);
+		this.editor.render(data);
 		console.log(this);
 	}
 
 	setReadOnlyy(readonly) {
 		this.editor.readOnly = readonly;
+		this.editor.isReady.then(resolve);
 		console.log(this.editor);
+		this.editor.render(data);
 	  }
 
 	load(data){
@@ -964,7 +984,7 @@ class AIBlock{
 	render(){
 		return this.container;
 	}
-
+	
 	save (){
 		return { text: this.input.textContent };
 	}
