@@ -456,14 +456,15 @@ class TextEditor{
 
 			if (options.tooltip) {
 				let promise = loadModule(this.modules["tooltip"]).then(() => {  
-					config.tools.tooltip = {
+					config.tools.Tooltip = {
 						class: Tooltip,
 						location: 'left',
+						inlineToolbar: true,
 						highlightColor: '#FFEFD5',
 						underline: true,
 						backgroundColor: '#154360',
 						textColor: '#FDFEFE',
-						// holder: container.id,
+						holder: container.id,
 						
 					}; 
 				   }).catch((error) => {
