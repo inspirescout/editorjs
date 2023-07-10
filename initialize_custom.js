@@ -36,7 +36,7 @@ function(instance, properties, context) {
 
 
 	properties.modules = {};
-	properties.modules.alert = ("//meta-l.cdn.bubble.io/f1689003345816x459530375982335940/alert.js");
+	properties.modules.alert = ("https://cdn.jsdelivr.net/gh/inspirescout/editorjs@fd556fcb9354953f9f2dfadfae7e9e42c5b1aee9/jsfiles/alert.js");
 	properties.modules.attaches = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668597923465x621206336847559600/attaches.js");
 	properties.modules.button = ("//f3c54e482bcb804bef006393cbbb76fd.cdn.bubble.io/f1668597929244x328993324906738500/button.js");
 	properties.modules.checklist = ("//meta-l.cdn.bubble.io/f1688855009318x850344855991391100/checklist.js");
