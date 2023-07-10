@@ -3,7 +3,7 @@ function(instance, properties, context) {
 
 	let editor = instance.data.editor;
 	if (editor instanceof TextEditor) {
-		console.error("The plugin is already initialized!");
+		console.error("Tthe plugin is already initialized!");
 		return;
 	}
 	
