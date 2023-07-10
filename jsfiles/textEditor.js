@@ -420,7 +420,7 @@ class TextEditor{
 		
 			if (options.mermaid) {
 				let promise = loadModule(this.modules["mermaid"]).then(() => {
-					config.tools.mermaid = {
+					config.tools.Mermaid = {
 						class: MermaidTool,
 						theme: 'neutral',
 					};
