@@ -455,29 +455,37 @@ class TextEditor{
 			}
 
 			if (options.tooltip) {
-				let promise = loadModule(this.modules["tooltip"]).then(() => {  
-					config.tools.tooltip = {
-						class: Tooltip,
-						location: 'left',
-						inlineToolbar: true,
-						highlightColor: '#FFEFD5',
-						underline: true,
-						backgroundColor: '#154360',
-						textColor: '#FDFEFE',
-						shortcut: 'CMD+SHIFT+F',
-						// holder: container.id,
-						
-						
-					}; 
-					console.log("LOADED TOOLTIP");
-				   }).catch((error) => {
-					console.error('Error loading tooltip module:', error);
+				let promise = loadModule(this.modules["tooltip"])
+					.then(() => {
+						config.tools.tooltip = {
+							class: Tooltip,
+							location: 'left',
+							inlineToolbar: true,
+							highlightColor: '#FFEFD5',
+							underline: true,
+							backgroundColor: '#154360',
+							textColor: '#FDFEFE',
+							shortcut: 'CMD+SHIFT+F',
+							// holder: container.id,
+						};
+						console.log("LOADED TOOLTIP");
+					})
+					.catch((error) => {
+						console.error('Error loading tooltip module:', error);
+					});
+			
+				promise.then(() => {
+					console.log("Tooltip module resolved successfully.");
+				}).catch((error) => {
+					console.error('Error resolving tooltip module:', error);
 				});
-				   console.log("tooltiDADAD");
-				   console.log(container.id);
-				   console.log(container);
-				   loadPromises.push(promise);				
+			
+				console.log("tooltiDADAD");
+				console.log(container.id);
+				console.log(container);
+				loadPromises.push(promise);
 			}
+			
 
 			if (options.inlinetemplate) {
 				let promise = loadModule(this.modules["inlinetemplate"]).then(() => {  
