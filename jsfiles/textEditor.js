@@ -462,13 +462,10 @@ class TextEditor{
 						config.tools.tooltip = {
 							class: Tooltip,
 							location: 'left',
-							inlineToolbar: true,
 							highlightColor: '#FFEFD5',
 							underline: true,
 							backgroundColor: '#154360',
 							textColor: '#FDFEFE',
-							shortcut: 'CMD+SHIFT+F',
-							// tunes: [],
 							holder: 'editorId',
 						};
 						console.log(container.id);
