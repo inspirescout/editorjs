@@ -636,52 +636,17 @@ class TextEditor{
 	}
 
 
-	setReadOnlyyy(container, uploader, options){
-		return new Promise((resolve, reject)=>{
-
-			let config = {
-				
-				readOnly: true,				
-				holder: container,			
-				
-				
-			};
-
-	Promise.allSettled(loadPromises).then(() => {
 	
-		this.editor = new EditorJS(config);
-		this.editor.isReady.then(resolve);
-	}).catch(reject);
-});
-
-}
-
-	setReadOnlyggy(readonly) {
-		editor.readOnly.toggle(true);
-	}
-
-
-
-	setReadOnlggy(readonly){
-	
-	this.input.contentEditable = !readOnly;
-	editor.readOnly.toggle(true);
-	
-	
-	}
-	static get readOnly() {
-		return true;
-	}
 
 	setReadOnly(readonly){
 		console.log("read");
 		console.log(readonly);
-		this.readOnly.toggle(true);
+		this.readOnly.toggle(readonly);
 		console.log(this);
 	}
 
 	setReadOnlyy(readonly) {
-		this.editor.readOnly.toggle(true);
+		this.editor.readOnly.toggle(readonly);
 		
 		console.log(this.editor);
 		
