@@ -52,9 +52,7 @@ class TextEditor{
 					tunes.push("textVariant");
 					
 				}
-				if (options.tooltip) {
-					tunes.push("tooltip");					
-				}
+				
 				if (options.anchor) {
 					tunes.push("anchorTune");
 				}
@@ -470,8 +468,8 @@ class TextEditor{
 							backgroundColor: '#154360',
 							textColor: '#FDFEFE',
 							shortcut: 'CMD+SHIFT+F',
-							tunes: [],
-							//holder: container.id,
+							// tunes: [],
+							holder: container.id,
 						};
 						console.log("LOADED TOOLTIP");
 					})
