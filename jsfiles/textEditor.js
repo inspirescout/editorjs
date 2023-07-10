@@ -466,7 +466,7 @@ class TextEditor{
 							backgroundColor: '#154360',
 							textColor: '#FDFEFE',
 							shortcut: 'CMD+SHIFT+F',
-							holder: 'customHolderID',
+							holder: container.id,
 						};
 						console.log("LOADED TOOLTIP");
 					})
