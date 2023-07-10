@@ -676,18 +676,15 @@ class TextEditor{
 	setReadOnly(readonly){
 		console.log("read");
 		console.log(readonly);
-		this.readOnly = readonly;
-		this.config.readOnly = readonly;
-		this.editor.isReady.then(resolve);
-		this.editor.render(data);
+		this.readOnly.toggle(true);
 		console.log(this);
 	}
 
 	setReadOnlyy(readonly) {
-		this.editor.readOnly = readonly;
-		this.editor.isReady.then(resolve);
+		this.editor.readOnly.toggle(true);
+		
 		console.log(this.editor);
-		this.editor.render(data);
+		
 	  }
 
 	load(data){
