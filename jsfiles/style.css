@@ -20,6 +20,7 @@
 }
 .ce-block__content {
   left: 28px;
+  right: 28px;
 }
 .ce-toolbar__actions {
   right: initial !important;
