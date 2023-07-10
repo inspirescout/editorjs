@@ -620,18 +620,20 @@ class TextEditor{
 		this.insertImageToNextBlock(imageURL);
 	}
 	
+	// this.editor = new EditorJS(config);
+	// this.editor.isReady.then(resolve);
+
 	setReadOnly(readonly){
 		console.log("read");
 		console.log(readonly);
 		this.readOnly = readonly;
+		this.config.readOnly = readonly;
+		console.log(this);
 	}
 
 	setReadOnlyy(readonly) {
-		this.waitForInitialization.then(() => {
-		  this.editor.isReady.then(() => {
-			this.config.readOnly = readonly;
-		  });
-		});
+		this.editor.readOnly = readonly;
+		console.log(this.editor);
 	  }
 
 	load(data){
