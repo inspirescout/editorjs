@@ -623,13 +623,13 @@ class TextEditor{
 	setReadOnly(readonly){
 		console.log("read");
 		console.log(readonly);
-		this.editor.config.readOnly = options.read_only;
+		this.readOnly = readonly;
 	}
 
 	setReadOnlyy(readonly) {
 		this.waitForInitialization.then(() => {
 		  this.editor.isReady.then(() => {
-			this.editor.config.readOnly = readonly;
+			this.config.readOnly = readonly;
 		  });
 		});
 	  }
