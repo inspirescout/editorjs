@@ -464,9 +464,12 @@ class TextEditor{
 						underline: true,
 						backgroundColor: '#154360',
 						textColor: '#FDFEFE',
-						holder: container.id,
+						shortcut: 'CMD+SHIFT+F',
+						// holder: container.id,
+						
 						
 					}; 
+					console.log("LOADED TOOLTIP");
 				   }).catch((error) => {
 					console.error('Error loading tooltip module:', error);
 				});
