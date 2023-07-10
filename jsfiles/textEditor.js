@@ -471,6 +471,7 @@ class TextEditor{
 							// tunes: [],
 							holder: container.id,
 						};
+						console.log(container.id);
 						console.log("LOADED TOOLTIP");
 					})
 					.catch((error) => {
