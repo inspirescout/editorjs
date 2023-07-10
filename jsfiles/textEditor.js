@@ -623,6 +623,40 @@ class TextEditor{
 	// this.editor = new EditorJS(config);
 	// this.editor.isReady.then(resolve);
 
+	static get isReadOnlySupported() {
+		return true;
+	}
+	clear(){
+		if (!this.initialized) {
+			this.waitForInitialization.then(this.clear.bind(this));
+			return;
+		}
+
+		this.editor.clear();
+	}
+
+
+	setReadOnlyyy(container, uploader, options){
+		return new Promise((resolve, reject)=>{
+
+			let config = {
+				
+				readOnly: true,				
+				holder: container,			
+				
+				...options,
+			};
+
+	Promise.allSettled(loadPromises).then(() => {
+	
+		this.editor = new EditorJS(config);
+		this.editor.isReady.then(resolve);
+	}).catch(reject);
+});
+
+}
+	
+
 	setReadOnly(readonly){
 		console.log("read");
 		console.log(readonly);
@@ -938,6 +972,7 @@ class AIBlock{
 	static get isReadOnlySupported() {
 		return true;
 	}
+	
 
 	static get toolbox() {
 		return {
